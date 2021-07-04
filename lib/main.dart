@@ -1,10 +1,19 @@
 import 'package:admin/constants.dart';
+import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/screens/main/main_screen.dart';
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,6 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: DevicePreview.locale(context), // Add the locale here
+      builder: DevicePreview.appBuilder, // Add the builder here
       debugShowCheckedModeBanner: false,
       title: 'Flutter Admin Panel',
       theme: ThemeData.dark().copyWith(
@@ -20,7 +31,10 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: MainScreen(),
+      home: ChangeNotifierProvider(
+        create: (context) => MenuController(),
+        child: MainScreen(),
+      ),
     );
   }
 }

@@ -15,14 +15,14 @@ class CloudStorageInfo {
       this.color});
 }
 
-List demoMyFiels = [
+List demoMyFiles = [
   CloudStorageInfo(
     title: "Documents",
     numOfFiels: 1328,
     svgSrc: "assets/icons/Documents.svg",
     totalStorage: "1.9GB",
     color: primaryColor,
-    percentage: 35,
+    percentage: 55,
   ),
   CloudStorageInfo(
     title: "Google Drive",
@@ -30,7 +30,7 @@ List demoMyFiels = [
     svgSrc: "assets/icons/google_drive.svg",
     totalStorage: "2.9GB",
     color: Color(0xFFFFA113),
-    percentage: 35,
+    percentage: 100,
   ),
   CloudStorageInfo(
     title: "One Drive",
